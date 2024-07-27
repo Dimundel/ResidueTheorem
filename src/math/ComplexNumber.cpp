@@ -52,16 +52,20 @@ ComplexNumber operator*(const ComplexNumber &first,
 }
 
 std::ostream &operator<<(std::ostream &stream, const ComplexNumber &number) {
-  if (number.real != 0) {
-    stream << number.real;
-  }
+  if (number.real == 0 && number.imag == 0) {
+    stream << "0";
+  } else {
+    if (number.real != 0) {
+      stream << number.real;
+    }
 
-  if (number.real != 0 && number.imag > 0) {
-    stream << "+" << number.imag << "i";
-  } else if (number.real != 0 && number.imag < 0) {
-    stream << number.imag << "i";
-  } else if (number.real == 0) {
-    stream << number.imag << "i";
+    if (number.imag > 0) {
+      stream << "+" << number.imag << "i";
+    } else if (number.imag < 0) {
+      stream << number.imag << "i";
+    } else if (number.real == 0) {
+      stream << number.imag << "i";
+    }
   }
 
   return stream;

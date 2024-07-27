@@ -7,6 +7,7 @@ const double MAX_ERROR = 1e-6;
 
 class ComplexNumberTest : public testing::Test {
 protected:
+  ComplexNumber num_zero = {0, 0};
   ComplexNumber num_real = {2, 0};
   ComplexNumber num_imag = {0, -3};
   ComplexNumber num1 = {3, -4};
@@ -32,6 +33,10 @@ TEST_F(ComplexNumberTest, Argument) {
 
 TEST_F(ComplexNumberTest, PrintOperator) {
   std::ostringstream output;
+
+  output << num_zero;
+  EXPECT_EQ(output.str(), "0");
+  output.str("");
 
   output << num_real;
   EXPECT_EQ(output.str(), "2");
