@@ -10,11 +10,13 @@ protected:
 };
 
 TEST_F(ComplexNumberTest, Multiplication) {
-  EXPECT_EQ((num_real * num_imag).real, 0);
-  EXPECT_EQ((num_real * num_imag).imag, -6);
+  ComplexNumber result1 = num_real * num_imag;
+  EXPECT_EQ(result1.real, 0) << "Expected real part to be 0";
+  EXPECT_EQ(result1.imag, -6) << "Expected imaginary part to be -6";
 
-  EXPECT_EQ((num1 * num2).real, -2);
-  EXPECT_EQ((num1 * num2).imag, 11);
+  ComplexNumber result2 = num1 * num2;
+  EXPECT_EQ(result2.real, -2) << "Expected real part to be -2";
+  EXPECT_EQ(result2.imag, 11) << "Expected imaginary part to be 11";
 }
 
 int main() {
