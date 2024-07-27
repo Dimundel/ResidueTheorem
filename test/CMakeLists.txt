@@ -1,0 +1,3 @@
+add_executable(test_complexnumber test_complexnumber.cpp)
+target_link_libraries(test_complexnumber gtest math)
+add_test(NAME test_complexnumber COMMAND test_complexnumber)
