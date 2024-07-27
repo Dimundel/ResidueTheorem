@@ -1,5 +1,8 @@
 #include "math/ComplexNumber.h"
+#include <cmath>
 #include <gtest/gtest.h>
+
+const double MAX_ERROR = 1e-6;
 
 class ComplexNumberTest : public testing::Test {
 protected:
@@ -17,6 +20,13 @@ TEST_F(ComplexNumberTest, Multiplication) {
   ComplexNumber result2 = num1 * num2;
   EXPECT_EQ(result2.real, -2) << "Expected real part to be -2";
   EXPECT_EQ(result2.imag, 11) << "Expected imaginary part to be 11";
+}
+
+TEST_F(ComplexNumberTest, Argument) {
+  EXPECT_EQ(arg(num_real), 0);
+  EXPECT_EQ(arg(num_imag), -M_PI / 2);
+  EXPECT_NEAR(arg(num1), -0.92729521, MAX_ERROR);
+  EXPECT_NEAR(arg(num2), 2.677945045, MAX_ERROR);
 }
 
 int main() {
