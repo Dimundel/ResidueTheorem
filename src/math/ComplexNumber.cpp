@@ -33,7 +33,7 @@ ComplexNumber &operator-=(ComplexNumber &first, const ComplexNumber &second) {
 
 ComplexNumber operator-(const ComplexNumber &first,
                         const ComplexNumber &second) {
-  ComplexNumber res = {first.real - second.real, first.imag + -second.imag};
+  ComplexNumber res = {first.real - second.real, first.imag - second.imag};
   return res;
 }
 
