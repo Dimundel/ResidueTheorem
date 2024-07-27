@@ -9,6 +9,11 @@ double arg(const ComplexNumber &number) {
   return std::atan2(number.imag, number.real);
 }
 
+ComplexNumber conjugate(const ComplexNumber &number) {
+  ComplexNumber res = {number.real, -number.imag};
+  return res;
+}
+
 ComplexNumber &operator+=(ComplexNumber &first, const ComplexNumber &second) {
   first.real += second.real;
   return first;
@@ -44,4 +49,20 @@ ComplexNumber operator*(const ComplexNumber &first,
   ComplexNumber res = first;
   res *= second;
   return res;
+}
+
+std::ostream &operator<<(std::ostream &stream, const ComplexNumber &number) {
+  if (number.real != 0) {
+    stream << number.real;
+  }
+
+  if (number.real != 0 && number.imag > 0) {
+    stream << "+" << number.imag << "i";
+  } else if (number.real != 0 && number.imag < 0) {
+    stream << number.imag << "i";
+  } else if (number.real == 0) {
+    stream << number.imag << "i";
+  }
+
+  return stream;
 }

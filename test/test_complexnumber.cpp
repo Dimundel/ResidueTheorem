@@ -1,6 +1,7 @@
 #include "math/ComplexNumber.h"
 #include <cmath>
 #include <gtest/gtest.h>
+#include <sstream>
 
 const double MAX_ERROR = 1e-6;
 
@@ -27,6 +28,26 @@ TEST_F(ComplexNumberTest, Argument) {
   EXPECT_EQ(arg(num_imag), -M_PI / 2);
   EXPECT_NEAR(arg(num1), -0.92729521, MAX_ERROR);
   EXPECT_NEAR(arg(num2), 2.677945045, MAX_ERROR);
+}
+
+TEST_F(ComplexNumberTest, PrintOperator) {
+  std::ostringstream output;
+
+  output << num_real;
+  EXPECT_EQ(output.str(), "2");
+  output.str("");
+
+  output << num_imag;
+  EXPECT_EQ(output.str(), "-3i");
+  output.str("");
+
+  output << num1;
+  EXPECT_EQ(output.str(), "3-4i");
+  output.str("");
+
+  output << num2;
+  EXPECT_EQ(output.str(), "-2+1i");
+  output.str("");
 }
 
 int main() {

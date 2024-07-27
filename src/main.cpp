@@ -2,6 +2,7 @@
 #include <iostream>
 
 int main() {
-  std::cout << "Hello world!" << std::endl;
+  ComplexNumber num = {-1, +2};
+  std::cout << num << std::endl;
   return 0;
 }
