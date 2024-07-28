@@ -24,10 +24,27 @@ ComplexNumber &operator-=(ComplexNumber &first, const ComplexNumber &second);
 ComplexNumber operator-(const ComplexNumber &first,
                         const ComplexNumber &second);
 
+ComplexNumber &operator*=(ComplexNumber &first, double second);
+
+ComplexNumber operator*(const ComplexNumber &first, double second);
+
+ComplexNumber operator*(double first, const ComplexNumber &second);
+
 ComplexNumber &operator*=(ComplexNumber &first, const ComplexNumber &second);
 
 ComplexNumber operator*(const ComplexNumber &first,
                         const ComplexNumber &second);
+
+ComplexNumber &operator/=(ComplexNumber &first, double second);
+
+ComplexNumber operator/(const ComplexNumber &firt, double second);
+
+ComplexNumber &operator/=(ComplexNumber &first, const ComplexNumber &second);
+
+ComplexNumber operator/(const ComplexNumber &first,
+                        const ComplexNumber &second);
+
+ComplexNumber operator/(double first, const ComplexNumber &second);
 
 std::ostream &operator<<(std::ostream &stream, const ComplexNumber &number);
 

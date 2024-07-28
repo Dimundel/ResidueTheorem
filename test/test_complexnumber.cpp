@@ -31,6 +31,24 @@ TEST_F(ComplexNumberTest, Argument) {
   EXPECT_NEAR(arg(num2), 2.677945045, MAX_ERROR);
 }
 
+TEST_F(ComplexNumberTest, Division) {
+  ComplexNumber result1 = num_zero / num2;
+  EXPECT_EQ(result1.real, 0);
+  EXPECT_EQ(result1.imag, 0);
+
+  ComplexNumber result2 = num1 / num2;
+  EXPECT_NEAR(result2.real, -2, MAX_ERROR);
+  EXPECT_NEAR(result2.imag, 1, MAX_ERROR);
+
+  ComplexNumber result3 = num1 / 2.;
+  EXPECT_NEAR(result3.real, 1.5, MAX_ERROR);
+  EXPECT_NEAR(result3.imag, -2, MAX_ERROR);
+
+  ComplexNumber result4 = 3 / num2;
+  EXPECT_NEAR(result4.real, -1.2, MAX_ERROR);
+  EXPECT_NEAR(result4.imag, -0.6, MAX_ERROR);
+}
+
 TEST_F(ComplexNumberTest, PrintOperator) {
   std::ostringstream output;
 

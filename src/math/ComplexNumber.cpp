@@ -51,6 +51,52 @@ ComplexNumber operator*(const ComplexNumber &first,
   return res;
 }
 
+ComplexNumber &operator*=(ComplexNumber &first, double second) {
+  first.real *= second;
+  first.imag *= second;
+  return first;
+}
+
+ComplexNumber operator*(const ComplexNumber &first, double second) {
+  ComplexNumber res = first;
+  res *= second;
+  return res;
+}
+
+ComplexNumber operator*(double first, const ComplexNumber &second) {
+  return second * first;
+}
+
+ComplexNumber &operator/=(ComplexNumber &first, double second) {
+  first.real /= second;
+  first.imag /= second;
+  return first;
+}
+
+ComplexNumber operator/(const ComplexNumber &first, double second) {
+  ComplexNumber res = first;
+  res /= second;
+  return res;
+}
+
+ComplexNumber &operator/=(ComplexNumber &first, const ComplexNumber &second) {
+  first *= conjugate(second) / abs(second) / abs(second);
+  return first;
+}
+
+ComplexNumber operator/(const ComplexNumber &first,
+                        const ComplexNumber &second) {
+  ComplexNumber res = first;
+  res /= second;
+  return res;
+}
+
+ComplexNumber operator/(double first, const ComplexNumber &second) {
+  ComplexNumber res = {first, 0};
+  res /= second;
+  return res;
+}
+
 std::ostream &operator<<(std::ostream &stream, const ComplexNumber &number) {
   if (number.real == 0 && number.imag == 0) {
     stream << "0";
