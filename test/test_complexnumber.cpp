@@ -49,6 +49,32 @@ TEST_F(ComplexNumberTest, Division) {
   EXPECT_NEAR(result4.imag, -0.6, MAX_ERROR);
 }
 
+TEST_F(ComplexNumberTest, Exponentiation) {
+  ComplexNumber result1 = pow(num_zero, 3);
+  EXPECT_EQ(result1.real, 0);
+  EXPECT_EQ(result1.imag, 0);
+
+  ComplexNumber result2 = pow(num_real, 2);
+  EXPECT_EQ(result2.real, 4);
+  EXPECT_EQ(result2.imag, 0);
+
+  ComplexNumber result3 = pow(num1, 1);
+  EXPECT_EQ(result3.real, 3);
+  EXPECT_EQ(result3.imag, -4);
+
+  ComplexNumber result4 = pow(num2, 2);
+  EXPECT_EQ(result4.real, 3);
+  EXPECT_EQ(result4.imag, -4);
+
+  ComplexNumber result5 = pow(num2, 0);
+  EXPECT_EQ(result5.real, 1);
+  EXPECT_EQ(result5.imag, 0);
+
+  ComplexNumber result6 = pow(num2, 18);
+  EXPECT_EQ(result6.real, -922077);
+  EXPECT_EQ(result6.imag, -1721764);
+}
+
 TEST_F(ComplexNumberTest, PrintOperator) {
   std::ostringstream output;
 

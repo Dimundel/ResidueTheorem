@@ -46,6 +46,8 @@ ComplexNumber operator/(const ComplexNumber &first,
 
 ComplexNumber operator/(double first, const ComplexNumber &second);
 
+ComplexNumber pow(const ComplexNumber &number, const int power);
+
 std::ostream &operator<<(std::ostream &stream, const ComplexNumber &number);
 
 #endif

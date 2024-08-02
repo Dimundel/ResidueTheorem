@@ -97,6 +97,23 @@ ComplexNumber operator/(double first, const ComplexNumber &second) {
   return res;
 }
 
+ComplexNumber pow(const ComplexNumber &number, const int power) {
+  if (power == 0) {
+    return ComplexNumber{1, 0};
+  }
+  ComplexNumber res = number;
+  int count = 1;
+  while (count * 2 <= power) {
+    res *= res;
+    count *= 2;
+  }
+  while (count < power) {
+    res *= number;
+    count++;
+  }
+  return res;
+}
+
 std::ostream &operator<<(std::ostream &stream, const ComplexNumber &number) {
   if (number.real == 0 && number.imag == 0) {
     stream << "0";
