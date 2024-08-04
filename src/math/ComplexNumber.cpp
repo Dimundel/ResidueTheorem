@@ -1,6 +1,16 @@
 #include "math/ComplexNumber.h"
 #include <cmath>
 
+ComplexNumber::ComplexNumber() : real(0.0), imag(0.0) {}
+
+ComplexNumber::ComplexNumber(const double r) : real(r), imag(0.0){};
+
+ComplexNumber::ComplexNumber(const int r)
+    : real(static_cast<double>(r)), imag(0.0) {}
+
+ComplexNumber::ComplexNumber(const double r, const double i)
+    : real(r), imag(i) {}
+
 double abs(const ComplexNumber &number) {
   return std::sqrt(number.real * number.real + number.imag * number.imag);
 }

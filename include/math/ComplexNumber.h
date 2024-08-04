@@ -6,6 +6,11 @@
 struct ComplexNumber {
   double real;
   double imag;
+
+  ComplexNumber();
+  ComplexNumber(const double r);
+  ComplexNumber(const int r);
+  ComplexNumber(const double r, const double i);
 };
 
 double abs(const ComplexNumber &number);
