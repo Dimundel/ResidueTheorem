@@ -26,6 +26,7 @@ ComplexNumber conjugate(const ComplexNumber &number) {
 
 ComplexNumber &operator+=(ComplexNumber &first, const ComplexNumber &second) {
   first.real += second.real;
+  first.imag += second.imag;
   return first;
 }
 
