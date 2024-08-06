@@ -1,1 +1,1 @@
-add_library(math ComplexNumber.cpp)
+add_library(math ComplexNumber.cpp ComplexFunction.cpp)
