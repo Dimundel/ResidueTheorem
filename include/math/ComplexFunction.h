@@ -3,6 +3,7 @@
 
 #include "ComplexNumber.h"
 #include <map>
+#include <memory>
 #include <vector>
 
 class ComplexFunction {
@@ -18,6 +19,19 @@ public:
   Polynomial() = default;
   Polynomial(const ComplexNumber &coef, const int power);
   Polynomial(const std::vector<std::pair<ComplexNumber, int>> &coefs);
+  ComplexNumber operator()(const ComplexNumber &number) override;
+};
+
+class Exponential : public ComplexFunction {
+private:
+  ComplexNumber m_coef;
+  std::unique_ptr<ComplexFunction> m_exponent;
+
+public:
+  Exponential(std::unique_ptr<ComplexFunction> exponent);
+  Exponential(const ComplexNumber &coef,
+              std::unique_ptr<ComplexFunction> exponent);
+  Exponential &operator=(Exponential &&other) noexcept;
   ComplexNumber operator()(const ComplexNumber &number) override;
 };
 

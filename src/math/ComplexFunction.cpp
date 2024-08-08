@@ -1,5 +1,7 @@
 #include "math/ComplexFunction.h"
 #include "math/ComplexNumber.h"
+#include <cmath>
+#include <memory>
 
 Polynomial::Polynomial(const ComplexNumber &coef, const int power) {
   m_coefs[power] = coef;
@@ -23,4 +25,26 @@ ComplexNumber Polynomial::operator()(const ComplexNumber &number) {
   }
   value *= pow(number, m_coefs.begin()->first);
   return value;
+}
+
+Exponential::Exponential(std::unique_ptr<ComplexFunction> exponent)
+    : m_coef(ComplexNumber(1)), m_exponent(std::move(exponent)){};
+
+Exponential::Exponential(const ComplexNumber &coef,
+                         std::unique_ptr<ComplexFunction> exponent)
+    : m_coef(coef), m_exponent(std::move(exponent)){};
+
+Exponential &Exponential::operator=(Exponential &&other) noexcept {
+  if (this != &other) {
+    m_coef = other.m_coef;
+    m_exponent = std::move(other.m_exponent);
+  }
+  return *this;
+}
+
+ComplexNumber Exponential::operator()(const ComplexNumber &number) {
+  ComplexNumber exponent_value = (*m_exponent)(number);
+  return std::exp(exponent_value.real) *
+         ComplexNumber(std::cos(exponent_value.imag),
+                       std::sin(exponent_value.imag));
 }
