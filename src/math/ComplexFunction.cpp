@@ -14,6 +14,30 @@ Polynomial::Polynomial(
   }
 }
 
+void Polynomial::print(std::ostream &stream) const {
+  auto it = m_coefs.crbegin();
+  while (it != m_coefs.crend()) {
+
+    if (!(it->second.real == 1 && it->second.imag == 0)) {
+      stream << it->second;
+    }
+
+    if (it->first > 0) {
+      stream << "z";
+    }
+    if (it->first > 1) {
+      stream << "^" << it->first;
+    }
+
+    ++it;
+    if (it != m_coefs.crend() &&
+        (it->second.real > 0 ||
+         (it->second.real == 0 && it->second.imag > 0))) {
+      stream << "+";
+    }
+  }
+}
+
 ComplexNumber Polynomial::operator()(const ComplexNumber &number) {
   if (m_coefs.size() == 1) {
     return m_coefs.begin()->second * pow(number, m_coefs.begin()->first);
@@ -42,9 +66,22 @@ Exponential &Exponential::operator=(Exponential &&other) noexcept {
   return *this;
 }
 
+void Exponential::print(std::ostream &stream) const {
+  if (!(m_coef.real == 1 && m_coef.imag == 0)) {
+    stream << m_coef;
+  }
+  stream << "exp(" << *m_exponent << ")";
+}
+
 ComplexNumber Exponential::operator()(const ComplexNumber &number) {
   ComplexNumber exponent_value = (*m_exponent)(number);
   return std::exp(exponent_value.real) *
          ComplexNumber(std::cos(exponent_value.imag),
                        std::sin(exponent_value.imag));
+}
+
+std::ostream &operator<<(std::ostream &stream,
+                         const ComplexFunction &function) {
+  function.print(stream);
+  return stream;
 }
